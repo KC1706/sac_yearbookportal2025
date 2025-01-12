@@ -1,26 +1,169 @@
-{% extends "blog/base.html" %} 
-{% load crispy_forms_tags %}
-{% block content %}
-<div class="content-section">
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Log In</legend>
-      {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-      <button class="btn tbn-outline-info" type="submit">Log In</button>
-      <small class="text-muted ml-2">
-        <a href="{% url 'password_reset' %}">Forget Password? </a>
-      </small>
-    </div>
-    
-  </form>
-  <div class="bordwr-top pt-3">
-    <small class="text-muted">
-      Need an Account? <a class="ml-2" href="{% url 'register' %}">Sign up now</a>
-    </small>
-  </div>
+{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<style>
+  .login-container {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-container {
+    position: absolute;
+    width: 282px;
+    top: 8rem;
+    left: 41rem;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .logo-container img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    filter: brightness(0) invert(1);
+  }
+
+  .portal-title {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .year {
+    color: #ffb800;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Form styles */
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1937b1;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-control {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: none !important;
+    padding: 0.4rem !important;
+    height: auto !important;
+    border-radius: 0.5rem !important;
+    backdrop-filter: blur(5px);
+    font-size: 2.3rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 0 0 2px rgba(25, 55, 177, 0.2) !important;
+  }
+
+  .btn-primary {
+    background: #1937b1;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .btn-primary:hover {
+    background: #132c8f;
+    transform: translateY(-1px);
+  }
+
+  .text-muted {
+    color: #6b7280 !important;
+  }
+
+  .text-muted a {
+    color: #1937b1;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .text-muted a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .logo-container {
+      position: static;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: #1937b1;
+      margin: -3rem -3rem 2rem -3rem;
+      padding: 2rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+
+    .login-container {
+      margin: 1rem;
+      padding: 2rem;
+    }
+  }
+
+
+  /* Target the label inside the div with id 'div_id_password' */
+  #div_id_password label {
+    visibility: hidden;
+  }
+  #div_id_password label::after {
+    content: "Date of Birth*";
+    visibility: visible;
+    display: block;
+    text-align: left;
+    margin-left: 0;
+    position: relative;
+    left: 0;
+  }
+
   
+
+</style>
+
+<div class="login-container">
+  <div class="logo-container">
+    <img src="/media/profile_pics/iitkgplogo.png" alt="Institution Logo" />
+    <h2 class="portal-title">YEARBOOK PORTAL</h2>
+    <div class="year">2024</div>
+  </div>
+
+  <h2 class="form-title">Login Now</h2>
+  <form method="POST">
+    {% csrf_token %} {{ form|crispy }}
+    <div class="form-group">
+      <button class="btn-primary" type="submit">LOGIN</button>
+      <!-- <small class="text-muted d-block text-right mt-3">
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+      </small> -->
+    </div>
+  </form>
+  <div
+    style="
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+      padding-top: 2rem;
+      text-align: center;
+    "
+  >
+    <!-- <small class="text-muted">
+      Need an Account? <a href="{% url 'register' %}">Sign up now</a>
+    </small> -->
+  </div>
 </div>
 {% endblock content %}
