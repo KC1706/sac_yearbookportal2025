@@ -4,7 +4,7 @@
 
   {% for post in Posts %}
     <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url}}">
+        <img class="rounded-circle article-img" style="width: 40%;" src="{{ post.author.profile.image.url}}">
         <div class="media-body">
           <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
@@ -12,7 +12,16 @@
           </div>
           <h2><a class="article-title" href="{% url 'post-detail' post.id %}" >{{ post.title }}</a></h2>
           <p class="article-content">{{ post.content }}</p>
+          <div class="post-actions">
+        <button class="like-btn" data-post-id="{{ post.id }}">
+          <i class="fas fa-heart"></i> <span class="like-count">{{ post.likes.count }}</span>
+        </button>
+        <button class="comment-btn" data-post-id="{{ post.id }}">
+          <i class="fas fa-comment"></i> Comment
+        </button>
+      </div>
         </div>
+        
       </article>
   {% endfor %}
   {% if is_paginated %}

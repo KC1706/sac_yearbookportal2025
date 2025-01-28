@@ -30,7 +30,7 @@ class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'    # <app>/<model>_<viewtype>.html
     context_object_name = 'Posts'
-    paginate_by = 5
+    paginate_by = 5 
     
     def get_queryset(self):
         user = get_object_or_404(User, username = self.kwargs.get('username'))
@@ -39,7 +39,8 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
-class PostCreateView(LoginRequiredMixin, CreateView): #If an unauthenticated user tries to access the view, they are automatically redirected to the login page.
+# class PostCreateView(LoginRequiredMixin, CreateView): 
+class PostCreateView(CreateView): #If an unauthenticated user tries to access the view, they are automatically redirected to the login page.
 
     model = Post
     fields =['title', 'content']

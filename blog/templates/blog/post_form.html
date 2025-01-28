@@ -1,17 +1,32 @@
-{% extends "blog/base.html" %} 
+{% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Blog Post</legend>
+      <legend class="border-bottom mb-4">Write Testimonials</legend>
+      
+      <div class="form-group">
+        <label for="sender_name">Sender's Name</label>
+        <input type="text" class="form-control" id="sender_name" name="sender_name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="sender_roll_no">Sender's Roll No.</label>
+        <input type="text" class="form-control" id="sender_roll_no" name="sender_roll_no" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="receiver_roll_no">Receiver's Roll No.</label>
+        <input type="text" class="form-control" id="receiver_roll_no" name="receiver_roll_no" required>
+      </div>
+      
       {{ form|crispy }}
     </fieldset>
     <div class="form-group">
       <button class="btn btn-outline-info" type="submit">Post</button>
     </div>
   </form>
- 
 </div>
 {% endblock content %}
