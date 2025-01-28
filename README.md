@@ -1,2 +1,1 @@
-This is a basic django blog website !!
-
+sac ka yearbook portal hai!!
